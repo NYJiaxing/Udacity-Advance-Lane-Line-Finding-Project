@@ -15,11 +15,11 @@ The goals / steps of this project are the following:
 
 #### 1. Calibrate Cameras with calibration pictures
 
-I start by preparing "object points", which will be the (x, y, z) coordinates of the chessboard corners in the world. Here I am assuming the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.  Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time I successfully detect all chessboard corners in a test image.  `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection.  
+I start by preparing "object points", which will be the (x, y, z) coordinates of the chessboard corners in the world. Here I am assuming the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.  Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time I successfully detect all chessboard corners in a test image.  `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection. ![alt text](/output_img/camera_cali.png)
 
 I then used the output `objpoints` and `imgpoints` to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function.  I applied this distortion correction to the test image using the `cv2.undistort()` function and the result like this ![alt text]().
 
-In the same time I store the calibration parameters in "camera_mtx_dist.p" file to use in the future. And I test reuse the parameters in the image and the rest result as follow ![alt text]()
+In the same time I store the calibration parameters in "camera_mtx_dist.p" file to use in the future. 
 
 ### Pipeline (single images)
 
@@ -73,12 +73,11 @@ For the lane line finding, I use the histogram hot pixle method to find the pote
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-I did this in lines # through # in my code in 'Advance Lane Finding.ipynb'
+I did this in lines # through # in my code in 'Advance Lane Finding.ipynb'. In the previous step I locate the x and y pixel location to fit a second order polynomial. To calculate I calculate the first and second order derivative of dx/dy. Then put them into the equation of Rcurve to get the curvature. 
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
-I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
-
+I implemented this step in lines #[72] through # in my code in `Advance Lane Finding.ipynb` in the function `to_world_image()`.  Here is an example of my result on a test image:
 ![alt text](/output_img/final_output_img.png)
 
 ---
